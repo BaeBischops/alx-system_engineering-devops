@@ -10,4 +10,4 @@ regex = /School/
 matches = input.scan(regex).join
 
 # Output the matches with a trailing newline
-puts matches + "$"
+puts matches
