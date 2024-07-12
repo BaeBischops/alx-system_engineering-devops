@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
+#this was completed by bischops.africa
 
-# Accept the argument from the command line
-input = ARGV[0]
+puts ARGV[0].scan(/school/).join
 
-# Define the regular expression to match "School"
-regex = /School/
-
-# Use the scan method to find matches and join them
-matches = input.scan(regex).join
-
-# Output the matches with a trailing newline
-puts matches
