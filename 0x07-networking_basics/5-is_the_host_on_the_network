@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Ping an IP address passed as an argument
+IP="${1}"
 
-arg="$1"
+# filename variable
+fn=$(basename "${BASH_SOURCE[@]}")
 
-if [ "$arg" ]; then
-	ping -c 5 "$arg"
+if ! [ "$IP" ]; then
+	echo "Usage: ${fn} {IP_ADDRESS}"
 else
-	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+	ping -c 5 "${IP}"
 fi
+
