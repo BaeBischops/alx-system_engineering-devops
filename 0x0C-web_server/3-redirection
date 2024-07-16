@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
-# Configure nginx server to redirect to another page
+# installs nginx with the configuration
+#+ Listen on port 80.
+#+ Returns page containing "Hello World!"
+#++ at root with a curl GET request
 
-sudo apt-get update
-sudo apt-get install -y nginx
+apt-get update
+apt-get install nginx -y
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me http:\/\/subete.tech permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
+printf %s "server {
+	listen    80 default_server;
+	listen    [::]:80 default_server;
+	root      /etc/nginx/html;
+	index     index.html index.htm;
+}
+" > /etc/nginx/sites-available/default
 
-sudo service nginx restart
+service nginx restart
