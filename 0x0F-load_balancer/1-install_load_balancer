@@ -40,8 +40,8 @@ frontend bischops-tech-frontend
 
 backend bischops-tech-backend
     balance roundrobin
-    server 151666-web-01 35.174.205.173:80 check
-    server 151666-web-02 54.146.91.85:80 check
+    server 97867-web-01 35.174.205.173:80 check
+    server 97867-web-02 54.146.91.85:80 check
 "
 
 # shellcheck disable=SC2154
