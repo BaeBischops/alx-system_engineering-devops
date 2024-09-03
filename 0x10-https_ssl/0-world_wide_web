@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
-# print domains and subdomains
+# Print domains and subdomains
 
 print_domain_subdomain () {
-    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+    IP=$(dig +short "$1")
+    if [ -n "$IP" ]; then
+        echo "The subdomain $2 is an A record and points to $IP"
+    else
+        echo "The subdomain $2 does not have an A record"
+    fi
 }
 
-if [ "$#" -eq 2 ]
-then
+if [ "$#" -eq 2 ]; then
     print_domain_subdomain "$2.$1" "$2"
 else
     print_domain_subdomain "www.$1" "www"
